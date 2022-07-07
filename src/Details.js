@@ -1,4 +1,4 @@
-import { Component, useContext } from "react";
+import { Component } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
@@ -41,9 +41,12 @@ class Details extends Component {
           <h2>
             {animal} - {breed} - {city}, {state}
           </h2>
-          <button style={{ backgroundColor: this.props.theme }}>
-            Adopt {name}
-          </button>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
+
           <p>{description}</p>
         </div>
       </div>
@@ -53,11 +56,10 @@ class Details extends Component {
 
 const WrappedDetails = () => {
   const params = useParams();
-  const [theme] = useContext(ThemeContext);
   return (
     // Boudary must be a layer above where we expect to see the error
     <ErrorBoundary>
-      <Details params={params} theme={theme} />
+      <Details params={params} />
     </ErrorBoundary>
   );
 };
