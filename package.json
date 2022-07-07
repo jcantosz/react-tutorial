@@ -5,7 +5,6 @@
   "scripts": {
     "build": "npx parcel build src/index.html",
     "dev": "parcel src/index.html",
-
     "format-check": "prettier --check \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
@@ -24,7 +23,8 @@
   },
   "dependencies": {
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-router-dom": "^6.2.1"
   },
   "browserslist": [
     "last 2 Chrome versions"
