@@ -2,10 +2,10 @@
   "name": "adopt-me",
   "version": "7.0.0",
   "description": "Adopt pets via adopt-me",
-  "main": "src/App.js",
   "scripts": {
+    "build": "npx parcel build src/index.html",
     "dev": "parcel src/index.html",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+
     "format-check": "prettier --check \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
