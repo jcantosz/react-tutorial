@@ -1,6 +1,8 @@
-import { Component } from "react";
+import { Component, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
+import ThemeContext from "./ThemeContext";
 
 class Details extends Component {
   // same as constructor below
@@ -23,6 +25,7 @@ class Details extends Component {
   }
   // Class components MUST have a render function
   render() {
+    //throw new Error("it died");
     if (this.state.loading) {
       return <h2>Loading...</h2>;
     }
@@ -38,7 +41,9 @@ class Details extends Component {
           <h2>
             {animal} - {breed} - {city}, {state}
           </h2>
-          <button>Adopt {name}</button>
+          <button style={{ backgroundColor: this.props.theme }}>
+            Adopt {name}
+          </button>
           <p>{description}</p>
         </div>
       </div>
@@ -48,7 +53,13 @@ class Details extends Component {
 
 const WrappedDetails = () => {
   const params = useParams();
-  return <Details params={params} />;
+  const [theme] = useContext(ThemeContext);
+  return (
+    // Boudary must be a layer above where we expect to see the error
+    <ErrorBoundary>
+      <Details params={params} theme={theme} />
+    </ErrorBoundary>
+  );
 };
 
 export default WrappedDetails;
